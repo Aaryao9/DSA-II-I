@@ -8,7 +8,6 @@ int main(){
     s.push(30);
     cout<<s.pop()<<endl;
     cout<<s.top()<<endl;
-    cout<<s.isempty()<<endl;
-    cout<<s.search(20)<<endl;
-    cout<<s.search(40)<<endl;   
+    s.isempty();
+    s.isfull();
 }

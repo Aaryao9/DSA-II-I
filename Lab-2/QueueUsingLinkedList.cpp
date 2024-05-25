@@ -5,15 +5,17 @@ int main()
 
 {
     Listqueue s;
-    s.push(10);
-    s.push(20); 
-    s.push(30);
-    cout<<s.pop()<<endl;
-    cout<<s.pop()<<endl;
-    cout<<s.search(20)<<endl;
-    s.push(40);
-    s.push(50);
-    cout<<s.search(40)<<endl;
-    cout<<s.isempty()<<endl;
-    cout<<s.top()<<endl;
+    s.enqueue(10);
+    s.enqueue(20); 
+    s.enqueue(30);
+    cout<<s.dequeue()<<endl;
+    cout<<s.dequeue()<<endl;
+    
+    s.enqueue(40);
+    s.enqueue(50);
+    
+    s.isempty();
+    cout<<s.back()<<endl;
+    cout<<s.front()<<endl;
+    s.isfull();
 }

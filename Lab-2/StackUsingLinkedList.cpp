@@ -14,6 +14,7 @@ int main()
     s.push(40);
     s.push(50);
     cout<<s.search(40)<<endl;
-    cout<<s.isempty()<<endl;
+    s.isempty();
     cout<<s.top()<<endl;
+    s.isfull();
 }

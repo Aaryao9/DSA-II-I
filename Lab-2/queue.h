@@ -1,62 +1,78 @@
+#include<iostream>
+using namespace std;
 class Arrayqueue{
     private:
         int *arr;
         int capacity;
-        int frontIndex;
+        int FrontIndex;
         int rearindex;
     public:
-        Arrayqueue(int capacity){frontIndex=-1;
+        Arrayqueue(int capacity){FrontIndex=-1;
         rearindex=-1;
         capacity=capacity;
         arr= new int(capacity);}
-        void push(int x)
-        {  while(rearindex<capacity)
+        void enqueue(int x)
+        {  if(rearindex<capacity)
             {
-                if(frontIndex==-1){
-            frontIndex=0;
-            rearindex=0;    
+                if(FrontIndex==-1){
+            FrontIndex=0;
+            rearindex=0;   
+             
             }
             else{rearindex++;}
 
         arr[rearindex]=x;
-        }       
+        cout<<arr[rearindex];}
+        else{
+            cout<<"cannot insert more elements";
+        }    
+
         }
-        int pop()
-        { if(frontIndex<=rearindex){
+        int dequeue()
+        { if(FrontIndex<=rearindex){
          int a;
-         a=arr[frontIndex];
-         frontIndex++;
+         a=arr[FrontIndex];
+         FrontIndex++;
          return a;}
          else{
           return -1;}
         }
-        int top()
-        { if(frontIndex<=rearindex){
-            return arr[rearindex];
+        int Front()
+        { if(FrontIndex<=rearindex){
+            return arr[FrontIndex];
         }
         else{
             return -1;
         }
         }
-        bool isempty()
+        void isempty()
         {
             if (rearindex==-1){
-                return true;
+                std::cout<<"queue is empty";
             } else{
-                return false;
+                std::cout<<"queue is not empty";
             }
         }
         
-        int search(int x)
+       void isfull()
+       { if (rearindex==capacity-1)
+       {
+           std::cout<<"queue is full";
+       }
+       else{
+           std::cout<<"not full";
+
+       }}
+
+
+        int back()
         {
-            for (int i=frontIndex;i<=rearindex;i++)
-            {
-                if (arr[i]==x)
-                {
-                    return i;
-                }
+            if (FrontIndex<=rearindex){
+                return arr[rearindex];
             }
-            return -1;
+            else{
+                return -1;
+            }
         }   
     
 };
@@ -70,78 +86,97 @@ class node{
 class Listqueue:public node{
 
 private:
-node *head;
-node *tail;
+node *Front;
+node *rear;
 public:
 Listqueue(){
-    head=nullptr;
-    tail=nullptr;
+    Front=nullptr;
+    rear=nullptr;
 }
-void push(int x){
+void enqueue(int x){
     node *temp;
     temp->data=x;
     temp->next=nullptr;
-    if(head==nullptr){
-        head=temp;
-        tail=temp;
+    if(Front==nullptr){
+        Front=temp;
+        rear=temp;
+        cout<<Front->data;
     }
     else{
-        tail->next=temp;
-        tail=temp;
+        rear->next=temp;
+        rear=temp;
+        cout<<rear->data;
     }
 }
-int pop(){
+int dequeue(){
     node  *temp;
-    
-    if (head==nullptr){
+    temp=Front;
+    if (Front==nullptr){
         return -1;
     }
-    else if (head==tail)
+    else if (Front==rear)
     {
-        head=nullptr;
-        tail=nullptr;
+        Front=nullptr;
+        rear=nullptr;
         return temp->data;
     }
      else {
-    temp=head;
-    head=head->next;
+    
+    Front=Front->next;
     int a;
     a=temp->data;   
     delete temp;
-     return temp->data;
+     return a;
     }
 }
    
-int top(){
-    if(tail!=nullptr){
-    return tail->data;
+int back(){
+    if(rear!=nullptr){
+    return rear->data;
     }else{
         return -1;
     }
 }
-bool isempty()
+void isempty()
     {
-        if (head==nullptr){
-            return true;
+        if (Front==nullptr){
+            std::cout<<"queue is empty";
         }
         else{
-            return false;
+            std::cout<<"queue is not empty";
         }
     }
+void isfull()
+    {
+        if (Front!=nullptr){
+            std::cout<<"queue is full";
+        }
+        else{
+            std::cout<<"queue is not full";
+        }
+    }
+int front(){
+    if(Front!=nullptr){
+    return Front->data;
+    }else{
+        return -1;
+    }
+}
+
 bool search(int x){
     node *temp;
-    temp=head;
-    if(head==nullptr){
+    temp=Front;
+    if(Front==nullptr){
        return false;
     }
     else{
         while(temp->next!=nullptr)
-        {   if(temp->data=x)
+        {   if(temp->data==x)
                 { return true;}
             
             temp=temp->next;}
 
-            if (temp->data=x)
+            if (temp->data==x)
              {return true;}
         return false;
     }

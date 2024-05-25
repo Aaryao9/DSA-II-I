@@ -1,4 +1,5 @@
 
+#include<iostream>
 using namespace std;
 class Arraystack{
     private:
@@ -23,7 +24,7 @@ class Arraystack{
          a=arr[topIndex];
          topIndex--;
          return a;}
-            cout<<"Stack is empty"<<endl;   
+            cout<<"Stack is empty";   
             return -1;
         }
         int top()
@@ -31,29 +32,29 @@ class Arraystack{
             return arr[topIndex];
         }
         else{
-            cout<<"Stack is empty"<<endl;
+            cout<<"Stack is empty";
             return -1;
         }}
-        bool isempty()
+        void isempty()
         {
             if (topIndex==-1){
-                return true;
-            } else{
-                return false;
+                std::cout<<"stack is empty";
+            }
+            else{
+                std::cout<<"stack is not empty";
             }
         }
         
-        int search(int x)
+        void isfull()
         {
-            for (int i=0;i<=topIndex;i++)
+            if (topIndex==capacity-1)
             {
-                if (arr[i]==x)
-                {
-                    return i;
-                }
+                std::cout<<"stack is full";
             }
-            return -1;
-        }   
+            else{
+                std::cout<<"not full";
+            }
+        }
     
 };
 
@@ -74,7 +75,7 @@ Liststack(){
     tail=nullptr;
 }
 void push(int x){
-    node *temp;
+    node *temp = new node();
     temp->data=x;
     temp->next=nullptr;
     if(head==nullptr){
@@ -87,7 +88,7 @@ void push(int x){
     }
 }
 int pop(){
-    node  *temp;
+    node  *temp = new node();
     temp=head;
     if (head==nullptr){
         return -1;
@@ -115,14 +116,15 @@ int top(){
         return -1;
     }
 }
-bool isempty()
+void isempty()
     {
         if (head==nullptr){
-            return true;
+            std::cout<<"stack is empty";
         }
         else{
-            return false;
+            std::cout<<"stack is not empty";
         }
+        
     }
 bool search(int x){
     node *temp;
@@ -132,15 +134,24 @@ bool search(int x){
     }
     else{
         while(temp->next!=nullptr)
-        {   if(temp->data=x)
+        {   if(temp->data==x)
                 { return true;}
             
             temp=temp->next;}
 
-            if (temp->data=x)
+            if (temp->data==x)
              {return true;}
         return false;
     }
 }
+void isfull()
+    {
+        if (head!=nullptr){
+            std::cout<<"stack is full";
+        }
+        else{
+            std::cout<<"stack is not full";
+        }
+    }   
 };
 
